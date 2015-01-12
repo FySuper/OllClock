@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>O - L - L</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="fo.png" >
+	<style type="text/css">
+		body, html {
+			height: 100%;
+			width: 100%;
+			background-color: #011011;
+			 transition:all 0.6s; -webkit-transition:all 0.6s;
+		}
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+
+		@media all and (max-width: 1024px) {
+			h1 { font-family:'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif; font-size:60px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;background-color: #011011;}
+			h2 { font-family:'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif; font-size:30px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;background-color: #011011;}
+			h3 { font-family:'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif; font-size:30px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;background-color: #011011;}
+		}
+
+		@media all and (min-width: 1024px) {
+			h1 { font-family:'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif; font-size:160px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;background-color: #011011;}
+			h2 { font-family:'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif; font-size:40px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;background-color: #011011;}
+			h3 { font-family:'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif; font-size:20px; font-weight:300; color:white; transition:all 0.6s; -webkit-transition:all 0.6s;background-color: #011011;}
+		}
+
+		table { position:absolute; width:100%; height:100%; top:0px; left:0px;}
+
+	</style>
+</head>
+<body>
+	<table>
+		<td height="100%" width="100%" align="center" valign="middle">
+			<h1 id="t"></h1><br><br>
+			<h2 id="h"></h2><br><br>
+			<h3 id="s"></h3>
+		</td>
+	</table>
+	<script type="text/javascript">
+
+	!function () {
+		setInterval(function () {
+			var time = getSfBTime(' : ', 10);	
+			var hex = '#' + getSfBTime('', 10);
+			$('#t')[0].innerHTML = time;
+			$('#s')[0].innerHTML = getHealthy(parseInt(time.split(' : ')[0], 10), parseInt(time.split(' : ')[1], 10));
+			document.body.style.backgroundColor = $('#h')[0].innerHTML = $('#s')[0].style.backgroundColor = $('#h')[0].style.backgroundColor = $('#t')[0].style.backgroundColor = hex;	
+		}, 1000);
+	}()
+
+	/**
+	 * 获取使用text间隔开的bit进制的当前时间
+	 * 好像没什么大用？？感觉有点莫名蛋疼
+	 *
+	 * @param {String, Number} text bit
+ 	 * @return {String}
+ 	 * @api public
+	 */
+	function getSfBTime(text, bit) {
+		var d = new Date();
+		return lingCover(d.getHours().toString(bit), 2) + text + lingCover(d.getMinutes().toString(bit), 2) + text + lingCover(d.getSeconds().toString(bit), 2);
+	}
+
+
+	/**
+	 * 通过时间获取此时应该干嘛
+	 *
+	 * @param {String, mins} hours, mins
+ 	 * @return {String}
+ 	 * @api public
+	 */
+	function getHealthy(hours, mins) {
+		switch (hours){
+			case 00:
+			case 01:
+			case 02:
+			case 03:
+			case 04:
+			case 05:
+			case 06: return '小同学,你现在应该睡得和pig一样哦！要是没乖乖睡觉。关心你的人都会生气的。. _.'; break;
+			case 07:
+			 	if (mins < 30) {
+			 		return '小同学,你现在应该睡得和pig一样哦！要是没乖乖睡觉。关心你的人都会生气的。. _.'; break;
+				} else {
+			 		return '起床。英国威斯敏斯特大学的研究人员发现，那些在早上5:22―7:21分起床的人，其血液中有一种能引起心脏病的物质含量较高，因此，在7:21之后起床对身体健康更加有益。打开台灯。“一醒来，就将灯打开，这样将会重新调整体内的生物钟，调整睡眠和醒来模式。”拉夫堡大学睡眠研究中心教授吉姆·霍恩说。喝一杯水。水是身体内成千上万化学反应得以进行的必需物质。早上喝一杯清水，可以补充晚上的缺水状态。'; break;
+			 	}
+			case 08: 
+				if (mins < 30) {
+				 	return '吃早饭。“早饭必须吃，因为它可以帮助你维持血糖水平的稳定，”伦敦大学国王学院营养师凯文·威尔伦说。早饭可以吃燕麦粥等，这类食物具有较低的血糖指数。'; break;
+				} else {
+				 	return '避免运动。来自布鲁奈尔大学的研究人员发现，在早晨进行锻炼的运动员更容易感染疾病，因为免疫系统在这个时间的功能最弱。步行上班。马萨诸塞州大学医学院的研究人员发现，每天走路的人，比那些久坐不运动的人患感冒病的几率低25%。'; break;
+				}
+			case 09: 
+				if (mins < 30) {
+				 	return '避免运动。来自布鲁奈尔大学的研究人员发现，在早晨进行锻炼的运动员更容易感染疾病，因为免疫系统在这个时间的功能最弱。步行上班。马萨诸塞州大学医学院的研究人员发现，每天走路的人，比那些久坐不运动的人患感冒病的几率低25%。'; break;
+				} else {
+				 	return '开始一天中最困难的工作。纽约睡眠中心的研究人员发现，大部分人在每天醒来的一两个小时内头脑最清醒。'; break;
+				}
+			case 10: 
+				if (mins < 30) {
+				 	return '开始一天中最困难的工作。纽约睡眠中心的研究人员发现，大部分人在每天醒来的一两个小时内头脑最清醒。'; break;
+				} else {
+					return '让眼睛离开屏幕休息一下。如果你使用电脑工作，那么每工作一小时，就让眼睛休息3分钟。'; break;
+				}
+			case 11: 
+			 	return '吃点水果。这是一种解决身体血糖下降的好方法。吃一个橙子或一些红色水果，这样做能同时补充体内的铁含量和维生素C含量。'; break;
+			case 12: 
+				return '你需要一顿可口的午餐，并且能够缓慢地释放能量。'; break;
+			case 13:
+			case 14:
+				return '午休一小会儿。雅典的一所大学研究发现，那些每天中午午休30分钟或更长时间，每周至少午休3次的人，因心脏病死亡的几率会下降37%。'; break;
+			case 16: 
+				return '喝杯酸奶。这样做可以稳定血糖水平。在每天三餐之间喝些酸牛奶，有利于心脏健康。'; break;
+			case 17:
+				return '晚餐少吃点。晚饭吃太多，会引起血糖升高，并增加消化系统的负担，影响睡眠。晚饭应该多吃蔬菜，少吃富含卡路里和蛋白质的食物。吃饭时要细嚼慢咽。'; break;
+			case 22:
+			case 23:
+				if (mins < 30) {
+				 	return '洗个热水澡。“体温的适当降低有助于放松和睡眠。”';break;
+				} else {
+					return '上床睡觉。如果你早上7点30起床，现在入睡可以保证你享受8小时充足的睡眠。';break;
+				}
+			default : return '我也不知道现在要干嘛，如果你愿意，可以对我发发呆，我会一直陪着。'; break;
+		}
+	}
+
+	/**
+	 * $选择器, 简化代码
+	 * 用法和css选择一样
+	 *
+	 * @param {String} id
+ 	 * @return {Object}
+ 	 * @api public
+	 */
+	function $(id) {
+		return document.querySelectorAll(id);
+	}
+
+
+	/**
+	 * 解决日常的缺位补零问题
+	 *
+	 * @param {String, Number} text length
+ 	 * @return {text}
+ 	 * @api privale
+	 */
+	function lingCover(text, length) {
+		var Difference = length - text.length;
+		if(Difference <= 0) { 
+			return text;
+		}
+
+		return "0".repeat(Difference) + text;
+	}
+ 
+
+
+	/**
+	 * 为String添加一个常用的操作repeat
+	 * 生产出一个n次重复的字符串
+	 *
+	 * @param {Number} n
+ 	 * @return {String}
+ 	 * @api private
+	 */
+	String.prototype.repeat = function(n){
+    	return new Array(n + 1).join(this);
+	}
+
+	</script>
+</body>
+</html>
