@@ -1,3 +1,3 @@
 # OllClock - 有趣的时钟
 A Funny Clock!
-Demo! http://teacher.1473.cn/OllClock/
+Demo! https://oll-clock-fysuper.c9.io/oll.html
